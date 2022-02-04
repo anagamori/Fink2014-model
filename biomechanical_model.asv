@@ -1,7 +1,7 @@
 %%-------------------------------------------------------------------------
 % biomechanical_model.m
 % Author: Akira Nagamori
-% Descriptions: Biomechanical model described in Fink et al. (2014)
+% Descriptions: Biomechai
 % x = [theta; ... % Joint angle
 %     theta_dot;... % Angular velocity
 %     T_e;... Extensor torque
@@ -14,19 +14,17 @@
 % A1 = delay matrix for sensory feedback 
 % B = input matrix
 %%-------------------------------------------------------------------------
-
 close all
 clear all
 clc
-% simulation paarmaters 
-Fs = 1000; % sampling rate
-time = 0:1/Fs:0.5; % time vector [sec]
 
-% model parameters 
-k = 0.5; % damping coefficient 
-tau_m = 9.6/1000; % time constant
-h = 1; % feedback gain (1.6 as f_c with no delay)
-t_delay = 5*Fs/1000+1;% feedback delay
+Fs = 1000;
+time = 0:1/Fs:0.5;
+
+k = 0.5;
+tau_m = 9.6/1000;
+h = 1; %1.6 as f_c with no delay
+t_delay = 5*Fs/1000+1;
 
 x = [0; ...
     0;...
@@ -55,16 +53,14 @@ B = [0 0;...
     0 0;...
     0 1/tau_m^2];
 
-% define input
 u = [0;0];
-I_e = 25*exp(-(time-0.025).^2/(2*0.01^2));
-I_f = zeros(1,length(time));
 
-% variables to store data
 x_mat = zeros(length(x),length(time));
 x_mat(:,1) = x;
 
-% Simulate model output
+I_e = 25*exp(-(time-0.025).^2/(2*0.01^2));
+I_f = zeros(1,length(time));
+
 for t = 1:length(time)
     u(1) = I_e(t);
     u(2) = I_f(t);
@@ -78,7 +74,6 @@ for t = 1:length(time)
     x_mat(:,t) = x;
 end
 
-% Plot output
 figure(1)
 subplot(2,1,1)
 plot(time,x_mat(1,:))
