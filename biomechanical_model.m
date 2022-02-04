@@ -1,4 +1,18 @@
-%close all
+%%-------------------------------------------------------------------------
+% mechanical_model.m
+% Author: Akira Nagamori
+% Descriptions: 
+%
+% x = [theta; ... % Joint angle
+%     theta_dot;... % Angular velocity
+%     T_e;... Extensor torque
+%     T_e_dot;... First derivative of extensor torque
+%     T_f;... Flexor torque
+%     T_f_dot]; First derivative of flexor torque
+% u = [I_e;... Input to extensor 
+%     I_f]; Input to flexor 
+%%-------------------------------------------------------------------------
+close all
 clear all
 clc
 
@@ -7,14 +21,8 @@ time = 0:1/Fs:0.5;
 
 k = 0.5;
 tau_m = 9.6/1000;
-h = 1;
-t_delay = 0*Fs/1000+1;
-% x = [theta; ...
-%     theta_dot;...
-%     T_e;...
-%     T_e_dot;...
-%     T_f;...
-%     T_f_dot];
+h = 1; %1.6 as f_c with no delay
+t_delay = 5*Fs/1000+1;
 
 x = [0; ...
     0;...
