@@ -1,10 +1,14 @@
-close all
+%close all
 clear all
 clc
 
+Fs = 1000;
+time = 0:1/Fs:0.5;
+
 k = 0.5;
 tau_m = 9.6/1000;
-
+h = 1;
+t_delay = 0*Fs/1000+1;
 % x = [theta; ...
 %     theta_dot;...
 %     T_e;...
@@ -25,6 +29,13 @@ A = [0 1 0 0 0 0; ...
     0 0 0 0 0 1;...
     0 0 0 0 -1/tau_m^2 -2/tau_m];
 
+A1 = [0 0 0 0 0 0; ...
+    0 0 0 0 0 0;...
+    0 0 0 0 0 0;...
+    0 -h/tau_m 0 0 0 0;...
+    0 0 0 0 0 0;...
+    0 h/tau_m 0 0 0 0];
+
 B = [0 0;...
     0 0;...
     0 0;...
@@ -34,22 +45,29 @@ B = [0 0;...
 
 u = [0;0];
 
-x_dot = A*x+B*u;
-
-Fs = 1000;
-time = 0:1/Fs:1;
+x_mat = zeros(length(x),length(time));
+x_mat(:,1) = x;
 
 I_e = 25*exp(-(time-0.025).^2/(2*0.01^2));
 I_f = zeros(1,length(time));
 
 for t = 1:length(time)
-   u(1) = I_e(t);
-   u(2) = I_f(t);
-   x_dot = A*x+B*u;
-   x = x_dot*1/Fs+x;
-   
-   theta_vec(t) = x(1);
+    u(1) = I_e(t);
+    u(2) = I_f(t);
+    if t > t_delay
+        x_dot = A*x +A1*x_mat(:,t-t_delay) + B*u;
+    else
+        x_dot = A*x +B*u;
+    end
+    x = x_dot*1/Fs+x;
+    
+    x_mat(:,t) = x;
 end
 
 figure(1)
-plot(time,theta_vec);
+subplot(2,1,1)
+plot(time,x_mat(1,:))
+hold on 
+subplot(2,1,2)
+plot(time,x_mat(2,:))
+hold on
