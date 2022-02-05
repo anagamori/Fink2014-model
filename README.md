@@ -6,7 +6,14 @@ MATLAB code to simulate the biomechanical model described in [Fink et al. (2014)
 1. biomechanical_model.m
 ## Model Descriptions
 The model is simulated using its state-space representation. 
-- State vector, x = 
+<img src="https://latex.codecogs.com/svg.image?\bg_white&space;\dot{\textbf{x}}&space;=&space;A\textbf{x}&space;&plus;&space;A_{1}\textbf{x}&space;&plus;&space;B\textbf{u}" title="\bg_white \dot{\textbf{x}} = A\textbf{x} + A_{1}\textbf{x} + B\textbf{u}" />
+- State vector, x
+- Input vector, u
+- State matrix, A
+- Delay matrix, A1
+- Input matrix, B
+
+
 ```
 x = [theta; ... % Joint angle
     theta_dot;... % Angular velocity
