@@ -5,7 +5,7 @@ MATLAB code to simulate the biomechanical model described in [Fink et al. (2014)
 ## File
 1. biomechanical_model.m
 ## Model Descriptions
-The model is simulated using its state-space representation. Note that the model is dimensionless except for time. All parameters are the same as those in Fink et al., (2014). Feedback gain (h) and delay (t_delay) can be adjusted.  
+The model is simulated using its state-space representation. Inputs to flexor and extensor, I_e and I_f, are converted into extensor and flexor torque, T_e and T_f, which drive joint angle kinematics, theta and theta_dot. Note that the model variables are dimensionless except for time. All parameters are the same as those in Fink et al., (2014). Feedback gain (h) and delay (t_delay) can be adjusted to manipulate effects of sensory feedback on joint kinematics.  
 
 <img src="https://latex.codecogs.com/svg.image?\bg_white&space;\dot{\textbf{x}}&space;=&space;A\textbf{x}&space;&plus;&space;A_{1}\textbf{x}&space;&plus;&space;B\textbf{u}" title="\bg_white \dot{\textbf{x}} = A\textbf{x} + A_{1}\textbf{x} + B\textbf{u}" />
 
