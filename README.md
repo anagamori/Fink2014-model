@@ -1,7 +1,8 @@
 # Fink2014-model
 MATLAB code to simulate the biomechanical model described in [Fink et al. (2014)](https://www.nature.com/articles/nature13276)
 #
-# Akira Nagamori
+## Author
+Akira Nagamori
 ## File
 1. biomechanical_model.m
 ## Model Descriptions
