@@ -26,7 +26,7 @@ time = 0:1/Fs:0.5; % time vector [sec]
 k = 0.5; % damping coefficient 
 tau_m = 9.6/1000; % time constant
 h = 1; % feedback gain (1.6 as f_c with no delay)
-t_delay = 5*Fs/1000+1;% feedback delay
+t_delay = 0*Fs/1000+1;% feedback delay
 
 x = [0; ...
     0;...
