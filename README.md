@@ -4,7 +4,9 @@ MATLAB and python code to simulate the biomechanical model described in [Fink et
 ## Author
 Akira Nagamori
 ## File
-1. biomechanical_model.m
+1. biomechanical_model.m (MATLAB code)
+2. biomechanical_model.ipynb (Python code in Jupyter notebook)
+3. 
 ## Model Descriptions
 The model is simulated using its state-space representation. Inputs to flexor and extensor, I_e and I_f, are converted into extensor and flexor torques, T_e and T_f. These toruqes drive joint angle kinematics described by theta and theta_dot. Note that the model variables are dimensionless except for time. All parameters are the same as those in Fink et al., (2014). Feedback gain (h) and delay (t_delay) can be adjusted to manipulate effects of sensory feedback on joint kinematics.  
 
