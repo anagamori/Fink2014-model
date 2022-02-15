@@ -65,6 +65,7 @@ x_mat = zeros(length(x),length(time));
 x_mat(:,1) = x;
 
 % Simulate model output
+tic
 for t = 1:length(time)
     u(1) = I_e(t);
     u(2) = I_f(t);
@@ -77,6 +78,7 @@ for t = 1:length(time)
     
     x_mat(:,t) = x;
 end
+toc
 
 % Plot output
 figure(1)
